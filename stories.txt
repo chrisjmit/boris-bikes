@@ -1,0 +1,35 @@
+User story 1
+Nouns:
+person
+Bike
+docking station
+
+Verbs:
+use
+like
+release
+
+Objects              Messages
+Person
+Bike                use
+DockingStation      release_bike
+
+Diagram
+DockingStation <-- release_bike --> a bike
+
+User story 2
+Nouns:
+person
+good_bike
+
+Verbs:
+use
+like
+working
+
+Objects              Messages
+Person
+good_bike             working?
+
+Diagram:
+good_bike <==working? --> true/false
