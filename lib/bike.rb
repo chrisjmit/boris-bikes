@@ -1,5 +1,5 @@
 class Bike
   def working?
-    puts "Yup."
+    true  
   end
 end
