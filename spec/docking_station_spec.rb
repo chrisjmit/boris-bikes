@@ -41,4 +41,9 @@ describe DockingStation do
         expect { subject.dock(bike) }.to raise_error 'Docking station full'
       end
     end
+
+    # it "should return the number of broken bikes" do
+    #   subject = Bike.new
+    #   expect(subject.broken Bike.new).to eq "Broken bikes"
+    # end
 end

@@ -20,6 +20,12 @@ class DockingStation
       @bikes << bike
     end
 
+    # def broken(bike)
+    #
+    #
+    # end
+
+
     private
 
     attr_reader :bikes
