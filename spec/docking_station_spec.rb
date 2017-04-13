@@ -1,11 +1,12 @@
-require "../lib/docking_station.rb"
-require "../lib/bike.rb"
+require "./lib/docking_station.rb"
+require "./lib/bike.rb"
 
 describe DockingStation do
 
     it { is_expected.to respond_to :release_bike }
 
     it { is_expected.to respond_to(:dock).with(1).argument }
+    #it { is_expected.to respond_to :not_release_broken?}
 
     #it { is_expected.to respond_to(:bikes) }
 
@@ -18,6 +19,15 @@ describe DockingStation do
         it "should return an error if no bikes available" do
           expect { subject.release_bike}.to raise_error "No bikes available"
         end
+        it 'fails to release bike' do
+          station = DockingStation.new
+          bike = Bike.new
+          bike.report_broken
+          subject.dock bike
+          expect(subject.release_bike).to raise_error "Bike broken"
+        end
+
+
       end
 
       describe "#dock" do
@@ -42,8 +52,16 @@ describe DockingStation do
       end
     end
 
+  #
+
+end
+
+    #describe 'release_broken' do
+
+    #end
+
+
     # it "should return the number of broken bikes" do
     #   subject = Bike.new
     #   expect(subject.broken Bike.new).to eq "Broken bikes"
     # end
-end
