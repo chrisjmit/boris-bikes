@@ -1,42 +1,39 @@
-require_relative "bike"
+# in lib/docking_sation.rb
+require './lib/bike.rb'
 
 class DockingStation
-    DEFAULT_CAPACITY = 20
 
-    attr_accessor :capacity
+  attr_reader :capacity
+  attr_accessor :bikes
 
-    def initialize(capacity = DEFAULT_CAPACITY)
-      @capacity = capacity
-      @bikes = []
-    end
+  DEFAULT_CAPACITY = 20
 
-    def release_bike
-    fail "No bikes available" if empty?
-    fail "Broken bike" if @bikes.last.broken?
-      @bikes.pop
-    end
+  def initialize(capacity = DEFAULT_CAPACITY)
+    @capacity = capacity
+    @bikes = [] 
+  end
 
-    #def not_release_broken?
-      #fail "Bike broken" if @bikes.broken?
-    #end
-
-    def dock(bike)
-      fail "Docking station full" if full?
-      @bikes << bike
-    end
+  def release_bike
+    fail 'Error: no bikes available at this docking station.' if empty?
+    fail 'Bike broken' if bikes[-1].broken
+    bikes.pop
+  end
 
 
 
-    private
+  def dock(bike)
+    fail 'Error: this docking station is occupied.' if full?
+    bike.broken ? bikes.unshift(bike) : bikes << bike
+  end
 
-    attr_reader :bikes
+  private
 
-    def empty?
-      @bikes.empty?
-    end
+  def full?
+    bikes.count >= capacity
+  end
 
-    def full?
-      @bikes.count >= capacity
-    end
+  def empty?
+    bikes.empty?
+  end
 
 end
